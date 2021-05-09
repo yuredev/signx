@@ -1,19 +1,20 @@
 import { Router } from 'express';
+import createUser from '../services/createUser';
 
 const userRouter = Router();
 
-userRouter.post('/', (req, res) => {
+userRouter.post('/', async (req, res) => {
   const {
-    email,
     password,
-    name,
+    username,
   } = req.body;
 
-  return res.json({
-    email,
+  const user = await createUser({
     password,
-    name,
+    username,
   });
+
+  return res.json(user);
 });
 
 export default userRouter;
