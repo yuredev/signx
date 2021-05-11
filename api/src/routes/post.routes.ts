@@ -1,8 +1,9 @@
 import { Router } from 'express';
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const postRouter = Router();
 
-postRouter.post('/', (req, res) => {
+postRouter.post('/', ensureAuthenticated, (req, res) => {
   const {
 
   } = req.body;
