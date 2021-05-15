@@ -1,12 +1,12 @@
 import React from 'react';
-import { AuthContextProvider } from './src/hooks/AuthContext';
+import { AuthProvider } from './src/hooks/AuthContext';
 import SignIn from './src/screens/SignIn';
 
 const App: React.FC = () => {
   return (
-    <AuthContextProvider>
+    <AuthProvider>
       <SignIn />
-    </AuthContextProvider>
+    </AuthProvider>
   );
 };
 

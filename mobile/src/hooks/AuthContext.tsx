@@ -19,9 +19,15 @@ interface AuthContextData {
 
 const AuthContext = createContext({} as AuthContextData);
 
-export const useAuth = useContext(AuthContext);
+export const useAuth = () => {
+  const ctx = useContext(AuthContext)
+  if (!ctx) {
+    throw new Error('useAuth can be oly used within an AuthProvider')
+  }
+  return ctx;
+};
 
-export const AuthContextProvider: React.FC = ({ children }) => {
+export const AuthProvider: React.FC = ({ children }) => {
   const [authData, setAuthData] = useState<AuthData>({} as AuthData);
 
   const signIn = useCallback(async ({ password, username }: SignInCredentials) => {
@@ -32,9 +38,9 @@ export const AuthContextProvider: React.FC = ({ children }) => {
         password,
       })).data;
       setAuthData({token, user})
-      Alert.alert('Login efetuado com sucessox', `Bem vindo ${user.username}`);
+      Alert.alert('Login Successfull', `Welcome ${user.username}`);
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert('Incorrect password/email combination');
     }
   }, []);
 

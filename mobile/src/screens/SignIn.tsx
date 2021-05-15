@@ -11,7 +11,7 @@ import { useAuth } from '../hooks/AuthContext';
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { signIn } = useAuth;
+  const { signIn } = useAuth();
 
   return (
     <View style={styles.SignInContainer}>
